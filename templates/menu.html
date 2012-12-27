@@ -1,0 +1,38 @@
+<!-- Menu -->
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="#">Track My Money</a>
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+					<li class="active"><a href="/"><i class="icon-home icon-white"></i></a></li>
+					<li><a href="/viewStat?anno=2012">2012</a></li>
+					<li><a href="/viewStat?anno=2013">2013</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+			
+        	<!-- Bottone Login -->
+         <ul class="nav pull-right">
+				{% if current_user %}
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{current_user}} <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+                     <li><a href="javascript:logout();">Logout</a></li>
+						</ul>
+					</li>
+             {% else %}
+                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="/login">
+                     <i class="icon-user"></i> Accedi
+                 </a>
+             {% end %}
+         </div>
+         <!-- / Bottone Login -->
+         			
+		</div>
+	</div>
+</div>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <title>Track My Money</title>
+
+    <!-- CSS -->
+    <!--<link type="text/css" href="../static/bootstrap/css/bootstrap.css" rel="stylesheet" />-->
+    <link type="text/css" href="../static/css/bootstrap-cosmo.css" rel="stylesheet" />
+    <link type="text/css" href="../static/css/icon.css" rel="stylesheet" />
+    <link type="text/css" href="../static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />     
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+
+  </head>
+
+  <body>
+  
+		<div id="loading_page"></div>
+    
+		<!-- Aggiungo il menu - header -->	
+		{% if current_user %}
+    		{% include 'menu.html' %}
+		{% end %}
+
+
+    <div class="container">
