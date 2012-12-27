@@ -1,0 +1,10 @@
+.home-subcat-container {
+	margin-top: 50px;
+}
+.home-subcat, .home-subdescrizione, .home-inserisci {
+	display: none;
+}
+
+.btn-home-tile {
+	padding: 22px 30px;
+}
