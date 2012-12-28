@@ -2,129 +2,150 @@
 
 	<br /><br /><br /><br />
 
-	<div class="row-fluid form-horizontal">
-		<div class="span2 offset8">
-			<input type="text" id="data-spesa" class="span12" placeholder="Inserisci Data" />
-		</div>
-	</div><br />
+	<form id="home-form" action="javascript:hjs.addSpesa();">
+		<div class="row-fluid form-horizontal">
+			<div class="span2 offset8">
+				<input type="text" name="data-spesa" id="data-spesa" class="span12" placeholder="Inserisci Data" />
+			</div>
+		</div><br />
 	
-	<!--Prima Riga-->
-	<div class="row-fluid">
-		<button type="button" class="btn btn-primary btn-home-tile span2 offset2" onclick="javascript:hjs.showSubCat('casa-sub');">
-			<i class="icon-home icon-white"></i><br/>Casa
-		</button>
-		<button type="button" class="btn btn-primary btn-home-tile span2" onclick="javascript:hjs.showSubCat('tempolibero-sub');">
-			<i class="icon-glass icon-white"></i><br/>Tempo Libero
-		</button>
-		<button type="button" class="btn btn-primary btn-home-tile span2" onclick="javascript:hjs.showSubCat('abbigliamento-sub');">
-			<i class="icon-tag icon-white"></i><br/>Abbigliamento
-		</button>
-		<button type="button" class="btn btn-primary btn-home-tile span2" onclick="javascript:hjs.showSubCat('alimentazione-sub');">
-			<i class="icon-shopping-cart icon-white"></i><br/>Alimentazione
-		</button>
-	</div><!--/.Prima Riga-->
-	<br />
-	<!--Seconda Riga-->
-	<div class="row-fluid">
-		<button type="button" class="btn btn-primary btn-home-tile span2 offset2" onclick="javascript:hjs.showSubCat('pagamenti-sub');">
-			<i class="icon-briefcase icon-white"></i><br/>Pagamenti
-		</button>
-		<button type="button" class="btn btn-primary btn-home-tile span2" onclick="javascript:hjs.showSubCat('macchina-sub');">
-			<i class="icon-road icon-white"></i><br/>Macchina
-		</button>
-		<button type="button" class="btn btn-primary btn-home-tile span2" onclick="javascript:hjs.showSubCat('vacanze-sub');">
-			<i class="icon-plane icon-white"></i><br/>Vacanze
-		</button>
-		<button type="button" class="btn btn-primary btn-home-tile span2" onclick="javascript:hjs.showSubCat('altro-sub');">
-			<i class="icon-film icon-white"></i><br/>Altro
-		</button>
-	</div><!--/.Seconda Riga-->	
+		<!--Prima Riga-->
+		<div class="row-fluid">
+			<button type="button" class="btn btn-primary btn-home-tile span2 offset2" onclick="javascript:hjs.showSubCat('casa-sub');">
+				<i class="icon-home icon-white"></i><br/>Casa
+			</button>
+			<button type="button" class="btn btn-primary btn-home-tile span2" onclick="javascript:hjs.showSubCat('tempolibero-sub');">
+				<i class="icon-glass icon-white"></i><br/>Tempo Libero
+			</button>
+			<button type="button" class="btn btn-primary btn-home-tile span2" onclick="javascript:hjs.showSubCat('abbigliamento-sub');">
+				<i class="icon-tag icon-white"></i><br/>Abbigliamento
+			</button>
+			<button type="button" class="btn btn-primary btn-home-tile span2" onclick="javascript:hjs.showSubCat('alimentazione-sub');">
+				<i class="icon-shopping-cart icon-white"></i><br/>Alimentazione
+			</button>
+		</div><!--/.Prima Riga-->
+		<br />
+		<!--Seconda Riga-->
+		<div class="row-fluid">
+			<button type="button" class="btn btn-primary btn-home-tile span2 offset2" onclick="javascript:hjs.showSubCat('pagamenti-sub');">
+				<i class="icon-briefcase icon-white"></i><br/>Pagamenti
+			</button>
+			<button type="button" class="btn btn-primary btn-home-tile span2" onclick="javascript:hjs.showSubCat('macchina-sub');">
+				<i class="icon-road icon-white"></i><br/>Macchina
+			</button>
+			<button type="button" class="btn btn-primary btn-home-tile span2" onclick="javascript:hjs.showSubCat('vacanze-sub');">
+				<i class="icon-plane icon-white"></i><br/>Vacanze
+			</button>
+			<button type="button" class="btn btn-primary btn-home-tile span2" onclick="javascript:hjs.showSubCat('altro-sub');">
+				<i class="icon-film icon-white"></i><br/>Altro
+			</button>
+		</div><!--/.Seconda Riga-->	
 	
-	<div class="row-fluid home-subcat-container">		
-		<div class="span2 offset2">
+		<div class="row-fluid home-subcat-container">		
+			<div class="span2 offset2">
 
-			<!-- Home Sub Category -->
-			<div class="home-subcat" id="casa-sub">
-				<label class="radio"><input type="radio" name="casa-optionsRadios" id="mobili" value="casa-mobili" checked> Mobili </label>
-				<label class="radio"><input type="radio" name="casa-optionsRadios" id="arredamento" value="casa-arredamento"> Arredamento </label>
-				<label class="radio"><input type="radio" name="casa-optionsRadios" id="riparazione" value="casa-riparazione"> Riparazione </label>	
-				<label class="radio"><input type="radio" name="casa-optionsRadios" id="casa-altro" value="casa-altro"> Altro </label>	
-			</div><!-- /.Home Sub Category -->
+				<!-- Home Sub Category -->
+				<div class="home-subcat" id="casa-sub">
+					<label class="radio"><input type="radio" name="casa-optionsRadios" id="mobili" value="casa-mobili" checked> Mobili </label>
+					<label class="radio"><input type="radio" name="casa-optionsRadios" id="arredamento" value="casa-arredamento"> Arredamento </label>
+					<label class="radio"><input type="radio" name="casa-optionsRadios" id="riparazione" value="casa-riparazione"> Riparazione </label>	
+					<label class="radio"><input type="radio" name="casa-optionsRadios" id="casa-altro" value="casa-altro"> Altro </label>	
+				</div><!-- /.Home Sub Category -->
 
-			<!-- Tempo Libero Sub Category -->
-			<div class="home-subcat" id="tempolibero-sub">
-				<label class="radio"><input type="radio" name="tempolibero-optionsRadios" id="sport" value="tempolibero-sport" checked> Sport </label>
-				<label class="radio"><input type="radio" name="tempolibero-optionsRadios" id="concerto" value="tempolibero-concerto"> Concerto </label>
-				<label class="radio"><input type="radio" name="tempolibero-optionsRadios" id="cinema" value="tempolibero-cinema"> Cinema </label>	
-				<label class="radio"><input type="radio" name="tempolibero-optionsRadios" id="altro" value="tempolibero-altro"> Altro </label>	
-			</div><!-- /.Tempo Libero Sub Category -->
+				<!-- Tempo Libero Sub Category -->
+				<div class="home-subcat" id="tempolibero-sub">
+					<label class="radio"><input type="radio" name="tempolibero-optionsRadios" id="sport" value="tempolibero-sport" checked> Sport </label>
+					<label class="radio"><input type="radio" name="tempolibero-optionsRadios" id="concerto" value="tempolibero-concerto"> Concerto </label>
+					<label class="radio"><input type="radio" name="tempolibero-optionsRadios" id="cinema" value="tempolibero-cinema"> Cinema </label>	
+					<label class="radio"><input type="radio" name="tempolibero-optionsRadios" id="altro" value="tempolibero-altro"> Altro </label>	
+				</div><!-- /.Tempo Libero Sub Category -->
 			
-			<!-- Abbigliamento Sub Category -->
-			<div class="home-subcat" id="abbigliamento-sub">
-				<label class="radio"><input type="radio" name="abbigliamento-optionsRadios" id="calzature" value="abbigliamento-calzature" checked> Calzature </label>
-				<label class="radio"><input type="radio" name="abbigliamento-optionsRadios" id="vestiti" value="abbigliamento-vestiti"> Vestiti </label>
-				<label class="radio"><input type="radio" name="abbigliamento-optionsRadios" id="accessori" value="abbigliamento-accessori"> Accessori </label>	
-				<label class="radio"><input type="radio" name="abbigliamento-optionsRadios" id="altro" value="abbigliamento-altro"> Altro </label>	
-			</div><!-- /.Abbigliamento Sub Category -->
+				<!-- Abbigliamento Sub Category -->
+				<div class="home-subcat" id="abbigliamento-sub">
+					<label class="radio"><input type="radio" name="abbigliamento-optionsRadios" id="calzature" value="abbigliamento-calzature" checked> Calzature </label>
+					<label class="radio"><input type="radio" name="abbigliamento-optionsRadios" id="vestiti" value="abbigliamento-vestiti"> Vestiti </label>
+					<label class="radio"><input type="radio" name="abbigliamento-optionsRadios" id="accessori" value="abbigliamento-accessori"> Accessori </label>	
+					<label class="radio"><input type="radio" name="abbigliamento-optionsRadios" id="altro" value="abbigliamento-altro"> Altro </label>	
+				</div><!-- /.Abbigliamento Sub Category -->
 			
-			<!-- Alimentazione Sub Category -->
-			<div class="home-subcat" id="alimentazione-sub">
-				<label class="radio"><input type="radio" name="alimentazione-optionsRadios" id="spesa" value="alimentazione-spesa" checked> Spesa </label>
-				<label class="radio"><input type="radio" name="alimentazione-optionsRadios" id="altro" value="alimentazione-altro"> Altro </label>	
-			</div><!-- /.Alimentazione Sub Category -->
+				<!-- Alimentazione Sub Category -->
+				<div class="home-subcat" id="alimentazione-sub">
+					<label class="radio"><input type="radio" name="alimentazione-optionsRadios" id="spesa" value="alimentazione-spesa" checked> Spesa </label>
+					<label class="radio"><input type="radio" name="alimentazione-optionsRadios" id="altro" value="alimentazione-altro"> Altro </label>	
+				</div><!-- /.Alimentazione Sub Category -->
 			
-			<!-- Pagamenti Sub Category -->
-			<div class="home-subcat" id="pagamenti-sub">
-				<label class="radio"><input type="radio" name="pagamenti-optionsRadios" id="internet" value="pagamenti-internet" checked> Internet </label>
-				<label class="radio"><input type="radio" name="pagamenti-optionsRadios" id="telefono" value="pagamenti-telefono"> Telefono </label>
-				<label class="radio"><input type="radio" name="pagamenti-optionsRadios" id="altro" value="pagamenti-altro"> Altro </label>	
-			</div><!-- /.Pagamenti Libero Sub Category -->
+				<!-- Pagamenti Sub Category -->
+				<div class="home-subcat" id="pagamenti-sub">
+					<label class="radio"><input type="radio" name="pagamenti-optionsRadios" id="internet" value="pagamenti-internet" checked> Internet </label>
+					<label class="radio"><input type="radio" name="pagamenti-optionsRadios" id="telefono" value="pagamenti-telefono"> Telefono </label>
+					<label class="radio"><input type="radio" name="pagamenti-optionsRadios" id="altro" value="pagamenti-altro"> Altro </label>	
+				</div><!-- /.Pagamenti Libero Sub Category -->
 
-			<!-- Macchina Sub Category -->
-			<div class="home-subcat" id="macchina-sub">
-				<label class="radio"><input type="radio" name="macchina-optionsRadios" id="benzina" value="macchina-benzina" checked> Benzina </label>
-				<label class="radio"><input type="radio" name="macchina-optionsRadios" id="rata" value="macchina-rata"> Rata </label>
-				<label class="radio"><input type="radio" name="macchina-optionsRadios" id="assicurazione" value="macchina-assicurazione"> Assicurazione </label>
-				<label class="radio"><input type="radio" name="macchina-optionsRadios" id="bollo" value="macchina-bollo"> Bollo </label>
-				<label class="radio"><input type="radio" name="macchina-optionsRadios" id="altro" value="macchina-altro"> Altro </label>	
-			</div><!-- /.Macchina Libero Sub Category -->
+				<!-- Macchina Sub Category -->
+				<div class="home-subcat" id="macchina-sub">
+					<label class="radio"><input type="radio" name="macchina-optionsRadios" id="benzina" value="macchina-benzina" checked> Benzina </label>
+					<label class="radio"><input type="radio" name="macchina-optionsRadios" id="rata" value="macchina-rata"> Rata </label>
+					<label class="radio"><input type="radio" name="macchina-optionsRadios" id="assicurazione" value="macchina-assicurazione"> Assicurazione </label>
+					<label class="radio"><input type="radio" name="macchina-optionsRadios" id="bollo" value="macchina-bollo"> Bollo </label>
+					<label class="radio"><input type="radio" name="macchina-optionsRadios" id="altro" value="macchina-altro"> Altro </label>	
+				</div><!-- /.Macchina Libero Sub Category -->
 			
-			<!-- Vacanze Sub Category -->
-			<div class="home-subcat" id="vacanze-sub">
-				<label class="radio"><input type="radio" name="vacanze-optionsRadios" id="trasporto" value="vacanze-trasporto" checked> Trasporto </label>
-				<label class="radio"><input type="radio" name="vacanze-optionsRadios" id="hotel" value="vacanze-hotel"> Hotel </label>
-				<label class="radio"><input type="radio" name="vacanze-optionsRadios" id="souvenir" value="vacanze-souvenir"> Souvenir </label>
-				<label class="radio"><input type="radio" name="vacanze-optionsRadios" id="altro" value="vacanze-altro"> Altro </label>	
-			</div><!-- /.Vacanze Libero Sub Category -->
+				<!-- Vacanze Sub Category -->
+				<div class="home-subcat" id="vacanze-sub">
+					<label class="radio"><input type="radio" name="vacanze-optionsRadios" id="trasporto" value="vacanze-trasporto" checked> Trasporto </label>
+					<label class="radio"><input type="radio" name="vacanze-optionsRadios" id="hotel" value="vacanze-hotel"> Hotel </label>
+					<label class="radio"><input type="radio" name="vacanze-optionsRadios" id="souvenir" value="vacanze-souvenir"> Souvenir </label>
+					<label class="radio"><input type="radio" name="vacanze-optionsRadios" id="altro" value="vacanze-altro"> Altro </label>	
+				</div><!-- /.Vacanze Libero Sub Category -->
 			
-			<!-- Altro Sub Category -->
-			<div class="home-subcat" id="altro-sub">
-				<label class="radio"><input type="radio" name="altro-optionsRadios" id="altro" value="altro-altro" checked> Altro </label>	
-			</div><!-- /.Altro Libero Sub Category -->
+				<!-- Altro Sub Category -->
+				<div class="home-subcat" id="altro-sub">
+					<label class="radio"><input type="radio" name="altro-optionsRadios" id="altro" value="altro-altro" checked> Altro </label>	
+				</div><!-- /.Altro Libero Sub Category -->
 
-		</div>
+			</div>
 
-		<!-- Sub Descrizione-->		
-		<div class="span4">
-			<div class="home-subdescrizione" id="subdescrizione">
-				<div class="control-group">
-					<label class="control-label" for="home-subdescrizione">Descrizione</label>
-					<div class="controls">
-						<input type="text" class="input-xlarge" id="home-subdescrizione">
+			<!-- Sub Descrizione-->		
+			<div class="span4">
+				<div class="home-subdescrizione" id="subdescrizione">
+					<div class="control-group">
+						<label class="control-label" for="home-subdescrizione">Descrizione</label>
+						<div class="controls">
+							<input type="text" class="input-xlarge" id="home-subdescrizione" name="home-subdescrizione">
+						</div>
 					</div>
 				</div>
-			</div>
-		</div><!-- /.Sub Descrizione-->		
+				<div class="home-importo" id="importo">
+					<div class="control-group">
+						<label class="control-label" for="home-importo">Importo</label>
+						<div class="controls">
+							<input type="text" class="input-xlarge" id="home-importo" name="home-importo">
+						</div>
+					</div>
+				</div>
+			</div><!-- /.Sub Descrizione-->		
 		
-		<div class="span2">
-			<div class="home-inserisci">
-				<button type="button" class="btn btn-success span12">
-						<i class="icon-ok icon-white"></i><br /> Inserisci
-				</button>
-			</div>
+			<div class="span2">
+				<div class="home-inserisci">
+					<button type="button" class="btn btn-success span12" onclick="javascript:$('#home-form').submit();">
+							<i class="icon-ok icon-white"></i><br /> Inserisci
+					</button>
+				</div>
+			</div>		
 		</div>
-		
+	</form>
+
+<!-- Modale -->
+<div id="home-modale" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<h3 id="home-modale-header"></h3>
 	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" onclick="javascript:location.reload();">OK</button>
+	</div>
+</div>
+
+<!-- /.Modale -->
 
 {% include '../footer.html' %}
 
@@ -133,18 +154,13 @@
 <script type="text/javascript" src="../static/js/datepicker/bootstrap-datepicker-cosmo.js"></script>
 <script type="text/javascript" src="../static/js/datepicker/bootstrap-datepicker.it.js"></script>
 <!-- /.Datepicker -->
+<!-- Validation -->
+<script type="text/javascript" src="../static/js/validation/jquery.validate.js"></script>
+<!-- ./Validation -->
 
 <script type="text/javascript" src="../static/js/home/home.js"></script>
 <script>
 	$(document).ready(function(){
-		hjs = new Home();
-		
-		$('#data-spesa').datepicker({
-			"format": "dd-mm-yyyy",
-			"autoclose":true,
-			"todayBtn":true,
-			"language":"it",
-		});
-
+		hjs = new Home();		
 	});
 </script>

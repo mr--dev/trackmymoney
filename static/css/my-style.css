@@ -1,10 +1,33 @@
 .home-subcat-container {
 	margin-top: 50px;
 }
-.home-subcat, .home-subdescrizione, .home-inserisci {
+.home-subcat, .home-subdescrizione, .home-importo, .home-inserisci {
 	display: none;
 }
 
 .btn-home-tile {
 	padding: 22px 30px;
+}
+.home-inserisci button {
+	padding-top: 50px;
+	padding-bottom: 50px; 
+}
+
+input.error {
+	background-color: #ff0039;
+}
+
+#loading-page {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	z-index: 150;
+	background-color: rgb(0,0,0);
+	background-image: url('../img/loading_bar.gif');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	opacity: 0.8;
+	bottom: 0px;
+	top: 0px;
 }

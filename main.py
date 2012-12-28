@@ -22,6 +22,7 @@ settings = {
 application = tornado.web.Application([
 
 	(r"/login", login.handler),
+	(r"/home", home.handler),
 	(r"/static/(.*)", tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
 	(r"/(favicon.ico)", tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
 	(r"/", home.handler),
