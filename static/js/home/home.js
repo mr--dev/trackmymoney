@@ -24,7 +24,11 @@ function Home() {
 	
 
 	/* Show options for selected category */
-	this.showSubCat = function(id2show) {
+	this.showSubCat = function(id2show, el) {
+		
+		// Highlight selected button
+		$(".selected-tile").removeClass('selected-tile');
+		$(el).addClass('selected-tile');
 		
 		// Setting category
 		this.cat = id2show.split('-')[0];

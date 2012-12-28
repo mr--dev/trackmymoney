@@ -7,6 +7,10 @@
 
 .btn-home-tile {
 	padding: 22px 30px;
+	border: 3px solid white;
+}
+.selected-tile {
+	border-color: black;
 }
 .home-inserisci button {
 	padding-top: 50px;
