@@ -1,6 +1,8 @@
 import tornado.web
 import basehandler
 
+from datetime import datetime
+
 class handler(basehandler.BaseHandler):
 
 	def initialize(self):
@@ -23,6 +25,25 @@ class handler(basehandler.BaseHandler):
 			descrizione = d['descrizione']
 			importo = d['importo']
 			
-			self.retCode['stato'] = 0;
+			dd = data[0:2]
+			mm = data[3:5]
+			yyyy = data[6:10]
+			data = datetime(int(yyyy), int(mm), int(dd))
+			
+			stato = 0
+			try:
+				query = " \
+					INSERT INTO elencospese (categoria, sottocategoria, data, descrizione, importo) \
+					VALUES ('%s', '%s', '%s', '%s', '%f') \
+					" % (cat, subcat, data, descrizione, float(importo))
+				cur = self.con.cursor()
+				cur.execute(query)
+				self.con.commit()
+			except:
+				stato = 1
+				self.con.rollback()
+			
+			
+			self.retCode['stato'] = stato
 			self.retCode['messaggio'] = 'Record inserito correttamente'
 			self.write(tornado.escape.json_encode(self.retCode))
