@@ -7,7 +7,7 @@ import os.path
 import json
 import MySQLdb as mdb
 
-from handler import login, home
+from handler import login, home, viewstat
 from config import config
 
 settings = {
@@ -23,6 +23,7 @@ application = tornado.web.Application([
 
 	(r"/login", login.handler),
 	(r"/home", home.handler),
+	(r"/viewstat", viewstat.handler),
 	(r"/static/(.*)", tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
 	(r"/(favicon.ico)", tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
 	(r"/", home.handler),
