@@ -30,7 +30,7 @@
 					<label class="control-label" for="entrate">Entrate [€]</label>
 					<div class="controls">
 						<input type="text" id="entrate" name="entrate" class="input-small" value="0"/> 
-						<a href="#"><i class="icon-refresh"></i></a>
+						<a href="#" onclick="javascript:vsjs.setEntrate();"><i class="icon-refresh"></i></a>
 					</div>
 				</div>				
 				<div class="control-group span3">
@@ -87,6 +87,7 @@
 <script type="text/javascript" src="../static/js/viewstat/viewstat.js"></script>
 <script>
 	$(document).ready(function(){
-		vsjs = new ViewStat();		
+		vsjs = new ViewStat();
+		vsjs.setYear({{anno}})
 	});
 </script>

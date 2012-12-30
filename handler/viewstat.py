@@ -11,7 +11,8 @@ class handler(basehandler.BaseHandler):
 	
 	@tornado.web.authenticated	
 	def get(self):
-		self.render("viewstat/viewstat.html")
+		anno = self.get_argument("anno")
+		self.render("viewstat/viewstat.html", anno=anno)
 		
 	@tornado.web.authenticated
 	def post(self):
@@ -63,4 +64,39 @@ class handler(basehandler.BaseHandler):
 			retdata.append(elSpese)
 			retdata.append(entrate)
 			self.write(tornado.escape.json_encode(retdata))
-				
+		
+		elif (azione == 'setEntrate'):
+			mm = self.get_argument('mese')
+			yy = self.get_argument('anno')
+			entrate = self.get_argument('entrate')
+			
+			stato = 0
+			try:
+				query = " \
+					SELECT ID_entrata FROM entrate WHERE mese = %s AND anno = %s; \
+				" % (int(mm), int(yy))
+				cur.execute(query)
+				rs = cur.fetchone()
+				# Insert Entrate
+				if rs == None:
+					query = " \
+						INSERT INTO entrate (mese, anno, entrata) \
+						VALUES ( %s, %s, %s ); \
+					" % (int(mm), int(yy), float(entrate))
+					cur.execute(query)
+					self.con.commit()
+				# Update Entrate
+				else:
+					query = " \
+						UPDATE entrate \
+						SET entrata = %s \
+						WHERE ID_entrata = %s \
+					" % (float(entrate), int(rs[0]))
+					cur.execute(query)
+					self.con.commit()
+			except:
+				stato = 1
+				self.con.rollback()
+			
+			self.retCode['stato'] = stato
+			self.write(tornado.escape.json_encode(self.retCode))
