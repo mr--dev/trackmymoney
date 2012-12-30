@@ -38,6 +38,7 @@ function ViewStat() {
 				// 
 				uscite = retdata[0];
 				entrate = retdata[1];
+				datachart = retdata[2];
 				tot_uscite = 0;
 			
 				for (ii = 0; ii < uscite.length; ii++){
@@ -58,9 +59,69 @@ function ViewStat() {
 				$("#entrate").val(entrate);			
 				$("#uscite").val(tot_uscite);
 				vsjs.updateSaldo();
+				vsjs.updateChart(datachart);
 				$("#loading-page").hide();
 			});
 		}
+	}
+	
+	this.updateChart = function(datachart) {
+	
+		// Pie Chart
+		sc = [ "#dfdfdf", "#0f82f5", "#8d46b0", "#379f15", "#fe6600", "#e60033", "#958c12", "#030303"];
+		plot1 = $.jqplot ('chart-div', [datachart], {
+			seriesColors: sc,
+			seriesDefaults: {
+				renderer: $.jqplot.PieRenderer,
+				rendererOptions: {
+					showDataLabels: true,
+					fill: false,
+					sliceMargin: 4,
+					lineWidth: 5
+				}
+			},
+			legend: { show: true, location: 'e'}
+		});
+		plot1.redraw();
+		
+		// Bar Chart
+		s = Array();
+		plot2label = Array();
+		plot2data = Array()
+		
+		for (ii = 0; ii < datachart.length; ii++) {
+			el = datachart[ii];
+			dict = {label: el[0]};
+			plot2label.push(dict);
+			plot2data.push([ el[1] ]);
+		}
+		plot2 = $.jqplot('chart-div2', plot2data, {
+			seriesColors: sc,
+      	seriesDefaults:{
+				renderer:$.jqplot.BarRenderer,
+				rendererOptions: {fillToZero: true},
+				// pointLabels: { show: true }
+			},
+			series: plot2label,
+			legend: {
+				show: true,
+				placement: 'outsideGrid'
+			},
+			axes: {
+				xaxis: {
+					renderer: $.jqplot.CategoryAxisRenderer
+				},
+				yaxis: {
+					pad: 1.05,
+					tickOptions: {formatString: '%d €'}
+				}
+			},
+			axesDefaults: {
+				min: 0
+			}
+
+		});
+		plot2.redraw();
 	}
 	
 	this.updateSaldo = function() {

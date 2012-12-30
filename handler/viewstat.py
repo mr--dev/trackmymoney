@@ -24,7 +24,9 @@ class handler(basehandler.BaseHandler):
 			yy = self.get_argument('anno')
 			
 			elSpese = list()
+			dataChart = list()
 			try: 
+				# Spese List For Current Month
 				query = " \
 					SELECT ID_elencospesa, data, categoria, sottocategoria, descrizione, importo \
 					FROM elencospese \
@@ -43,6 +45,7 @@ class handler(basehandler.BaseHandler):
 					d['importo'] = record[5]					
 					elSpese.append(d)
 				
+				# Entrate For Current Month
 				query = " \
 					SELECT entrata \
 					FROM entrate \
@@ -54,8 +57,26 @@ class handler(basehandler.BaseHandler):
 					entrate = 0
 				else:
 					entrate = rs[0]
-				
-
+					
+				# Data Chart For Current Month
+				query = " \
+					SELECT c.descrizione, if(totale is null, 0, totale) as totale \
+					FROM categoria c \
+					LEFT OUTER JOIN ( \
+						 SELECT \
+							  categoria, sum(importo) as totale \
+						 FROM \
+							  elencospese \
+						 WHERE \
+							  MONTH(data) = %s AND year(data) = %s \
+						 GROUP BY \
+							  categoria ) s \
+					ON c.descrizione = s.categoria \
+				" % ( int(mm), int(yy) )
+				cur.execute(query)
+				rs = cur.fetchall()
+				for record in rs:				
+					dataChart.append(record)
 					
 			except:
 				print 'Errore'
@@ -63,6 +84,7 @@ class handler(basehandler.BaseHandler):
 			retdata = list()
 			retdata.append(elSpese)
 			retdata.append(entrate)
+			retdata.append(dataChart)
 			self.write(tornado.escape.json_encode(retdata))
 		
 		elif (azione == 'setEntrate'):
