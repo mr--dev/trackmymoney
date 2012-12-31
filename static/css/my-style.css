@@ -21,6 +21,10 @@ input.error {
 	background-color: #ff0039;
 }
 
+.mouse-link {
+	cursor: pointer;
+}
+
 #loading-page {
 	position: fixed;
 	height: 100%;

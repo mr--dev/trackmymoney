@@ -2,6 +2,8 @@ function ViewStat() {
 
 	this.yy = 0;
 	this.mm = 0;
+	this.plot1 = null;
+	this.plot2 = null;
 
 	// Insert or update entrate for current month
 	this.setEntrate = function() {	
@@ -69,7 +71,7 @@ function ViewStat() {
 	
 		// Pie Chart
 		sc = [ "#dfdfdf", "#0f82f5", "#8d46b0", "#379f15", "#fe6600", "#e60033", "#958c12", "#030303"];
-		plot1 = $.jqplot ('chart-div', [datachart], {
+		this.plot1 = $.jqplot ('chart-div', [datachart], {
 			seriesColors: sc,
 			seriesDefaults: {
 				renderer: $.jqplot.PieRenderer,
@@ -82,7 +84,6 @@ function ViewStat() {
 			},
 			legend: { show: true, location: 'e'}
 		});
-		plot1.redraw();
 		
 		// Bar Chart
 		s = Array();
@@ -95,7 +96,7 @@ function ViewStat() {
 			plot2label.push(dict);
 			plot2data.push([ el[1] ]);
 		}
-		plot2 = $.jqplot('chart-div2', plot2data, {
+		this.plot2 = $.jqplot('chart-div2', plot2data, {
 			seriesColors: sc,
       	seriesDefaults:{
 				renderer:$.jqplot.BarRenderer,
@@ -119,9 +120,26 @@ function ViewStat() {
 			axesDefaults: {
 				min: 0
 			}
-
 		});
-		plot2.redraw();
+	}
+	
+	/* Very Ugly Code: I Manually Show Only Desired Chart */
+	this.showChart = function( n ) {
+		// Check for a valid month
+		if ($("#mese").val() != '') {
+			$("#right-panel .nav-tabs li").removeClass('active');
+			if (n == 1){
+				$("#chart-div2").hide();
+				$("#chart-div").show();
+				$($("#right-panel .nav-tabs li")[0]).addClass('active');
+				this.plot1.replot();
+			} else {
+				$("#chart-div").hide();
+				$("#chart-div2").show();
+				this.plot2.replot();
+				$($("#right-panel .nav-tabs li")[1]).addClass('active');
+			}		
+		}
 	}
 	
 	this.updateSaldo = function() {
