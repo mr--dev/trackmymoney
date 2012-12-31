@@ -86,6 +86,66 @@
 		</div>
 	</div>
 	
+	<!-- Modale Modifica Elemento -->
+	<div class="modal hide fade" id="modale-modifica-spesa">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Modifica Elemento</h3>
+		</div>
+		<div class="modal-body">
+			<form id="modifica-spesa-form" class="form-horizontal" action="javascript:vsjs.updateSpesa();">
+				<div class="control-group">
+					<label class="control-label" for="data">Data</label>
+					<div class="controls">
+						<input type="text" id="data" name="data" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="categoria">Categoria</label>
+					<div class="controls">
+						<select id="categoria" name="categoria" onchange="javascript:vsjs.changeCategory();">
+							<option value="">Scegli</option>
+							<option value="casa">Casa</option>
+							<option value="tempolibero">Tempo Libero</option>
+							<option value="abbigliamento">Abbigliamento</option>
+							<option value="alimentazione">Alimentazione</option>
+							<option value="pagamenti">Pagamenti</option>
+							<option value="macchina">Macchina</option>
+							<option value="vacanze">Vacanze</option>
+							<option value="altro">Altro</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="sottocategoria">Sotto Categoria</label>
+					<div class="controls">
+						<select id="sottocategoria" name="sottocategoria">
+							<option value="">Scegli</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="descrizione">Descrizione</label>
+					<div class="controls">
+						<input type="text" name="descrizione" id="descrizione" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="importo">Importo</label>
+					<div class="controls">
+						<input type="text" name="importo" id="importo" />
+					</div>
+				</div>
+			</form>
+
+		</div>
+		<div class="modal-footer">
+			<a href="#" data-dismiss="modal" class="btn">Annulla</a>
+			<a href="#" class="btn btn-primary" onclick="javascript:$('#modifica-spesa-form').submit();">Applica</a>
+		</div>
+	</div>
+	<!-- /.Modale Modifica Elemento -->
+	
 {% include '../footer.html' %}
 
 <!-- Datepicker -->

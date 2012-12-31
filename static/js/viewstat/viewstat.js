@@ -4,7 +4,8 @@ function ViewStat() {
 	this.mm = 0;
 	this.plot1 = null;
 	this.plot2 = null;
-
+	this.ID_elencospesa = null;	
+	
 	// Initializing: Icon-Category Association.
 	this.iconcategory = {
 		'casa' : '<i class="icon-home"></i>',
@@ -58,6 +59,63 @@ function ViewStat() {
 			}
 		})
 	}
+	
+	/* Update Spesa */
+	this.updateSpesa = function () {
+		$("#modale-modifica-spesa").modal('hide');
+		data = {
+			'ID_elencospesa': this.ID_elencospesa,
+			'cat': $("#categoria").val(),
+			'subcat': $("#sottocategoria").val(),
+			'data': $("#data").val(),
+			'descrizione': $("#descrizione").val(),
+			'importo': $("#importo").val()
+		}
+		$.post('/viewstat', {'azione': 'updateSpesa', 'data': JSON.stringify(data)}, function(retdata){
+			$("#loading-page").hide();
+			retCode = JSON.parse(retdata);
+			bootbox.alert(retCode['messaggio'], function(result){
+				if (retCode['stato'] == 0)
+					vsjs.changeMonth();
+			});
+		})
+
+	}
+	
+	/* Edit spesa*/
+	this.modificaSpesa = function(ID_elencospesa) {
+		this.ID_elencospesa = ID_elencospesa;
+		console.log('Modifica spesa');
+		$("#loading-page").show();
+		$.post('/viewstat', {'azione': 'modificaSpesa', 'ID_elencospesa': ID_elencospesa}, function(retdata){
+			retdata = JSON.parse(retdata);
+			record = retdata[0];
+			subcat = retdata[1];
+			$("#sottocategoria").children().remove();
+			for (ii = 0; ii < subcat.length; ii++) {
+				$("#sottocategoria").append('<option value='+subcat[ii]+'>'+subcat[ii]+'</option>');
+			}
+			$("#data").val(record['data']);
+			$("#categoria").val(record['categoria']);
+			$("#sottocategoria").val(record['sottocategoria']);
+			$("#descrizione").val(record['descrizione']);
+			$("#importo").val(record['importo']);
+			$("#loading-page").hide();
+			$("#modale-modifica-spesa").modal('show');
+		})
+	}
+	
+	/* Get Subcategory of selected category */
+	this.changeCategory = function() {
+		cat = $("#categoria").val();
+		$.post('/viewstat', {'azione': 'changeCategory', 'cat': cat}, function(retdata){
+			subcat = JSON.parse(retdata);
+			$("#sottocategoria").children().remove();
+			for (ii = 0; ii < subcat.length; ii++) {
+				$("#sottocategoria").append('<option value='+subcat[ii]+'>'+subcat[ii]+'</option>');
+			}		
+		})
+	}
 
 	this.changeMonth = function() {
 		
@@ -85,7 +143,9 @@ function ViewStat() {
 						'	<td class="sottocategoria">'+record['sottocategoria']+'</td>'+
 						'	<td class="descrizione">'+record['descrizione']+'</td>'+
 						'	<td class="importo">'+record['importo']+'</td>'+
-						'	<td class="modifica"><i class="icon-edit"></i></td>'+
+						'	<td class="modifica">'+
+						'		<a class="mouse-link" onclick="javascript:vsjs.modificaSpesa('+record['ID_elencospesa']+')"><i class="icon-edit"></i></a>'+
+						'	</td>'+
 						'	<td class="elimina">'+
 						'		<a class="mouse-link" onclick="javascript:vsjs.removeSpesa('+record['ID_elencospesa']+')"><i class="icon-remove"></i></a>'+
 						'	</td>'+
@@ -187,6 +247,37 @@ function ViewStat() {
 	}
 
 	$(document).ready(function(){				
+
+		// Inizializzo il validate
+		$("#modifica-spesa-form").validate({
+			rules: {
+				"data" : "required",
+				"categoria" : "required",
+				"sottocategoria" : "required",
+				"descrizione" : "required",
+				"importo": {
+					"required": true,
+					"number": true
+				}
+			}, 
+			messages: {
+				"data" : "",
+				"categoria" : "",
+				"sottocategoria" : "",
+				"descrizione" : "",
+				"importo": ""
+			}
+		});
+		
+		// Inizializzo il datepicker
+		$('#data').datepicker({
+			"format": "dd-mm-yyyy",
+			"autoclose":true,
+			"todayBtn":true,
+			"language":"it",
+		});
+
+
 		$("#loading-page").hide();
 	});
 	

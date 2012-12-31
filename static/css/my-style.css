@@ -17,7 +17,7 @@
 	padding-bottom: 50px; 
 }
 
-input.error {
+input.error, select.error {
 	background-color: #ff0039;
 }
 
