@@ -5,6 +5,20 @@ function ViewStat() {
 	this.plot1 = null;
 	this.plot2 = null;
 
+	// Initializing: Icon-Category Association.
+	this.iconcategory = {
+		'casa' : '<i class="icon-home"></i>',
+		'tempolibero' : '<i class="icon-glass"></i>',
+		'abbigliamento' : '<i class="icon-tag"></i>',
+		'alimentazione' : '<i class="icon-shopping-cart"></i>',
+		'pagamenti' : '<i class="icon-briefcase"></i>',
+		'macchina' : '<i class="icon-road"></i>',
+		'vacanze' : '<i class="icon-plane"></i>',
+		'altro' : '<i class="icon-film"></i>',
+	}
+
+	
+
 	// Insert or update entrate for current month
 	this.setEntrate = function() {	
 
@@ -24,6 +38,25 @@ function ViewStat() {
 			}
 		}
 		
+	}
+	
+	/* Remove Spesa From DB */
+	this.removeSpesa = function(ID_elencospesa) {
+		bootbox.confirm('Sei sicuro di voler eliminare questo elemento?', 'No', 'Sì', function(result){
+			if (result) {
+				$("#loading-page").show();
+				$.post('/viewstat', {'azione': 'removeSpesa', 'ID_elencospesa': ID_elencospesa}, function(retdata){
+					$("#loading-page").hide();
+					retCode = JSON.parse(retdata);
+					bootbox.alert(retCode['messaggio'], function(){
+						if (retCode['stato'] == 0) {
+							vsjs.changeMonth();
+						}
+					})
+					
+				})
+			}
+		})
 	}
 
 	this.changeMonth = function() {
@@ -48,15 +81,17 @@ function ViewStat() {
 					$("#elenco-spese-table").append(
 						'<tr>'+
 						'	<td class="data">'+record['data']+'</td>'+
-						'	<td class="categoria">'+record['categoria']+'</td>'+
+						'	<td class="categoria">'+vsjs.iconcategory[record['categoria']]+'</td>'+
 						'	<td class="sottocategoria">'+record['sottocategoria']+'</td>'+
 						'	<td class="descrizione">'+record['descrizione']+'</td>'+
 						'	<td class="importo">'+record['importo']+'</td>'+
 						'	<td class="modifica"><i class="icon-edit"></i></td>'+
-						'	<td class="elimina"><i class="icon-remove"></i></td>'+
+						'	<td class="elimina">'+
+						'		<a class="mouse-link" onclick="javascript:vsjs.removeSpesa('+record['ID_elencospesa']+')"><i class="icon-remove"></i></a>'+
+						'	</td>'+
 						'</tr>'
 					);
-					tot_uscite += record['importo'];
+					tot_uscite += parseFloat(record['importo']);
 				}
 				$("#entrate").val(entrate);			
 				$("#uscite").val(tot_uscite);
@@ -121,6 +156,7 @@ function ViewStat() {
 				min: 0
 			}
 		});
+		this.showChart(1);
 	}
 	
 	/* Very Ugly Code: I Manually Show Only Desired Chart */
@@ -150,7 +186,7 @@ function ViewStat() {
 		this.yy = parseInt(yy);
 	}
 
-	$(document).ready(function(){		
+	$(document).ready(function(){				
 		$("#loading-page").hide();
 	});
 	

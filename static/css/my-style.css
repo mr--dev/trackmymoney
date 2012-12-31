@@ -39,3 +39,9 @@ input.error {
 	bottom: 0px;
 	top: 0px;
 }
+
+#elenco-spese-table td.data { width: 15%; text-align: center; }
+#elenco-spese-table td.sottocategoria { width: 15%; text-transform: uppercase; }
+#elenco-spese-table td.descrizione { width: 45% }
+#elenco-spese-table td.importo { width: 10%; text-align: right; }
+#elenco-spese-table td.modifica, #elenco-spese-tabella td.elimina, #elenco-spese-table td.categoria { width: 5%; text-align: center; }

@@ -28,7 +28,7 @@ class handler(basehandler.BaseHandler):
 			try: 
 				# Spese List For Current Month
 				query = " \
-					SELECT ID_elencospesa, data, categoria, sottocategoria, descrizione, importo \
+					SELECT ID_elencospesa, data, categoria, sottocategoria, descrizione, FORMAT(importo, 2) as importo \
 					FROM elencospese \
 					WHERE MONTH(data) = %s AND YEAR(data) = %s\
 					ORDER BY data \
@@ -121,4 +121,22 @@ class handler(basehandler.BaseHandler):
 				self.con.rollback()
 			
 			self.retCode['stato'] = stato
+			self.write(tornado.escape.json_encode(self.retCode))
+			
+		elif (azione == 'removeSpesa'):
+			ID_elencospesa = self.get_argument('ID_elencospesa')
+			
+			stato = 0
+			try:
+				query = " \
+					DELETE FROM elencospese WHERE ID_elencospesa = %s \
+				" % (int(ID_elencospesa))
+				cur.execute(query)
+				self.con.commit()
+			except:
+				stato = 1
+				self.con.rollback()
+			
+			self.retCode['stato'] = stato
+			self.retCode['messaggio'] = 'Operazione eseguita correttamente'
 			self.write(tornado.escape.json_encode(self.retCode))

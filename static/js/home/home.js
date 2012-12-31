@@ -17,8 +17,10 @@ function Home() {
 		$.post('/home', {'azione': 'addSpesa', 'data': JSON.stringify(data)}, function(retdata){
 			$("#loading-page").hide();
 			retCode = JSON.parse(retdata);
-			$("#home-modale-header").text(retCode['messaggio']);
-			$("#home-modale").modal("show");
+			bootbox.alert(retCode['messaggio'], function(result){
+				if (retCode['stato'] == 0)
+					location.reload();
+			});
 		})
 	}
 	
