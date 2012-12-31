@@ -182,7 +182,6 @@ class handler(basehandler.BaseHandler):
 				
 		elif (azione == 'changeCategory'):
 			cat = self.get_argument('cat')
-			print cat
 			
 			try:
 				query = " \
@@ -194,9 +193,7 @@ class handler(basehandler.BaseHandler):
 				rs = cur.fetchall()				
 				subCat = list()
 				for record in rs:
-					subCat.append(record[0])
-				
-				print subCat
+					subCat.append(record[0])			
 
 			except:
 				print 'Error'

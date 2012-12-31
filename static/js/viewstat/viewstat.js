@@ -96,6 +96,7 @@ function ViewStat() {
 				$("#sottocategoria").append('<option value='+subcat[ii]+'>'+subcat[ii]+'</option>');
 			}
 			$("#data").val(record['data']);
+			$('#data').data({date: record['data']}).datepicker('update');
 			$("#categoria").val(record['categoria']);
 			$("#sottocategoria").val(record['sottocategoria']);
 			$("#descrizione").val(record['descrizione']);
@@ -273,10 +274,9 @@ function ViewStat() {
 		$('#data').datepicker({
 			"format": "dd-mm-yyyy",
 			"autoclose":true,
-			"todayBtn":true,
 			"language":"it",
+			
 		});
-
 
 		$("#loading-page").hide();
 	});
