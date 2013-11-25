@@ -154,8 +154,8 @@ function ViewStat() {
 					);
 					tot_uscite += parseFloat(record['importo']);
 				}
-				$("#entrate").val(entrate);			
-				$("#uscite").val(tot_uscite);
+				$("#entrate").val(entrate.toFixed(2));
+				$("#uscite").val(tot_uscite.toFixed(2));
 				vsjs.updateSaldo();
 				vsjs.updateChart(datachart);
 				$("#loading-page").hide();
@@ -240,7 +240,8 @@ function ViewStat() {
 	}
 	
 	this.updateSaldo = function() {
-		$("#saldo").val(parseFloat($("#entrate").val()) - parseFloat($("#uscite").val()));	
+		var saldo = parseFloat($("#entrate").val()) - parseFloat($("#uscite").val());
+		$("#saldo").val(saldo.toFixed(2));
 	}
 	
 	this.setYear = function(yy) {

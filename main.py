@@ -7,8 +7,8 @@ import os.path
 import json
 import MySQLdb as mdb
 
+import config
 from handler import login, home, viewstat
-from config import config
 
 settings = {
 	"static_path": os.path.join(os.path.dirname(__file__), "static"),
@@ -32,7 +32,7 @@ application = tornado.web.Application([
 
 if __name__ == "__main__":
 	# application.listen(config['port'], address='127.0.0.1')
-	application.listen(config['port'])
-	application.con = mdb.connect('localhost', 'root', '', 'trackmymoney')
+	application.listen(config.port)
+	application.con = mdb.connect(config.db_host, config.db_user, config.db_pass, config.db_name, charset='utf8')
 	tornado.ioloop.IOLoop.instance().start()
 	tornado.autoreload.wait()
